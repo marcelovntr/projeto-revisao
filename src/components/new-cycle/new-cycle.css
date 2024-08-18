@@ -9,3 +9,22 @@
     font-weight: bold;
     flex-wrap: wrap;
 }
+
+.container--new-cycle input {
+background: transparent;
+height: 2.5rem;
+border: 0;
+border-bottom: 2px solid var(--line);
+font-weight: bold;
+font-size: 1.125rem;
+color: var(--text);
+padding: 0.5rem;
+}
+
+.container--new-cycle ::placeholder{
+color: rgba(255, 255, 255, 0.3);
+}
+
+.container--new-cycle input[type="number"] {
+    max-width: 72px;
+}

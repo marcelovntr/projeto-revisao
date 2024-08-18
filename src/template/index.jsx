@@ -1,13 +1,14 @@
 import { Header } from "../components/header";
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' // NECESSITA INSTALAR: npm install prop-types
 import './template.css'
 
-export function Layout({ children }) {
+export function Layout({ title, children }) {
     return (
         <>
             <Header />
             <main className="container--template">
                 <div className="container--template-contents">
+                    {/*<h1>{title}</h1>*/}
                     {children}
                 </div>
             </main>
@@ -16,5 +17,5 @@ export function Layout({ children }) {
 }
 
 Layout.propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node, //node <-- recebe vários tipos (element, div, etc.)
 }

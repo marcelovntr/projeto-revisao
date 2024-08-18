@@ -1,13 +1,13 @@
 import { HomePage } from './pages/home'
 import { Layout } from './template'
 
-// import React from 'react'
+// import React from 'react' <-- pra usar o <React.Fragment>
 // import NomeDoComponente from './pages/home'
 
 function App() {
   return (
     <>
-      <Layout>
+      <Layout title={'meu pau de óculos'}>
         <HomePage />
       </Layout>
     </>
@@ -16,11 +16,6 @@ function App() {
 // JSX
 
 export default App
-
-
-// function App() {
-//   return <h1>Hello world, LAB365.</h1>
-// }
-// // JSX
+// JSX
 
 // export default App
