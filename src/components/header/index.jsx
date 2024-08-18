@@ -1,3 +1,5 @@
+import { Timer, ScrollText } from 'lucide-react'
+import { NavLink } from 'react-router-dom'
 import './header.css'
 
 export function Header() {
@@ -6,8 +8,10 @@ export function Header() {
             <img src="/logotipo.png" alt="Logotipo do LAB Timer365" />
 
             <nav>
-                <a href="#">Home</a>
-                <a href="#">Historico</a>
+                
+                {/* <a href="#"><Timer size={24} /></a> */}
+                <NavLink to='/' end><Timer size={24} /></NavLink> {/*do Lucide, vem como SVG, com várias configurações */}
+                <NavLink to='/historico' end><ScrollText size={24}/></NavLink>
             </nav>
         </header>
     )
