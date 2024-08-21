@@ -1,6 +1,13 @@
+import { useState } from 'react'
 import './timer.css'
+import PropTypes from 'prop-types'
 
-export function Timer() {
+export function Timer({activeCycle}) {
+
+
+//activeCycle.startDate
+const [amountSecondsPassed, setAmountSecondsPassed] = useState(0)
+//npm i date-fns
     return (
         <div className='container--timer'>
             {/* Minutos */}
@@ -13,4 +20,8 @@ export function Timer() {
             <span>0</span>
         </div>
     )
+}
+
+Timer.PropTypes = {
+    activeCycle: PropTypes.object,
 }

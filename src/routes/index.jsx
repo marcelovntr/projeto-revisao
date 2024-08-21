@@ -8,6 +8,7 @@ export const routes = createBrowserRouter([
     {
 path:'/',
 element: <Layout />,
+//nested routes
 children: [
     {
         path: '/',
