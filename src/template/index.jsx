@@ -1,5 +1,5 @@
 import { Header } from "../components/header";
-import PropTypes from 'prop-types' // NECESSITA INSTALAR: npm install prop-types
+//import PropTypes from 'prop-types' // NECESSITA INSTALAR: npm install prop-types
 import { Outlet } from 'react-router-dom'
 import './template.css'
 

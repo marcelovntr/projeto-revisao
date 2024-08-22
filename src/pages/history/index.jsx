@@ -25,6 +25,22 @@ export function HistoryPage() {
                             <Status>Concluído</Status>
                         </td>
                     </tr>
+                    <tr>
+                        <td>Conserto de débitos técnicos</td>
+                        <td>25 anos</td>
+                        <td>Há cerca de 2 éons</td>
+                        <td>
+                            <Status variant={'pink'}>Concluído</Status>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Conserto de débitos técnicos</td>
+                        <td>25 anos</td>
+                        <td>Há cerca de 2 éons</td>
+                        <td>
+                            <Status variant={'orange'}>Concluído</Status>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
