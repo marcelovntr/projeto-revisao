@@ -39,7 +39,7 @@ export function HomePage() {
         setActiveCycleId(id)
     }
 
-    const activeCycle = cycles.find(cycle => cycles.id === activeCycleId)
+    const activeCycle = cycles.find(cycle => cycle.id === activeCycleId)
     return (
         // era div apenas
         <form className="container--home" onSubmit={handleSubmit(createNewCycle)}>
