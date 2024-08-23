@@ -47,7 +47,7 @@ export function HomePage() {
             <FormProvider {...methods}>
                 <NewCycle />
             </FormProvider>
-            <Timer activeCycle={activeCycle}/>
+            <Timer activeCycle={activeCycle}/> {/*passamento de prop pro 'arquivo' Timer processar*/}
             <Button>Começar</Button>
             {/*ou: <Button variant= "secondary">Começar</Button>    */}
         </form>
