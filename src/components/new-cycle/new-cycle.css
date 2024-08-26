@@ -28,3 +28,8 @@ color: rgba(255, 255, 255, 0.3);
 .container--new-cycle input[type="number"] {
     max-width: 72px;
 }
+
+.text--error{
+    color: chartreuse;
+    font-size: 0.75rem;
+}
