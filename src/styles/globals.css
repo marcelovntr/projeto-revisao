@@ -1,8 +1,8 @@
 :root {
 
     /** Variaveis */
-    --background: #121214;
-    --shape: #202024;
+    --background: #23232c; /*--background: #121214;*/
+    --shape: #323238; /* #202024;*/
     --box-on-shape: #29292E;
     --table-header: #323238;
     --text: #E1E1E6;

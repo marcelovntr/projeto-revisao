@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import { differenceInSeconds} from 'date-fns'
+import { differenceInSeconds } from 'date-fns'
 import './timer.css'
 import PropTypes from 'prop-types'
+import { useCycle } from '../../context/cycle'
 
-export function Timer({ activeCycle }) {
-
+//export function Timer({ activeCycle }) {
+export function Timer() {
+const {activeCycle} = useCycle()
 
     //activeCycle.startDate
     const [amountSecondsPassed, setAmountSecondsPassed] = useState(() => {
@@ -25,7 +27,7 @@ export function Timer({ activeCycle }) {
     const minutes = String(minutesAmount).padStart(2, '0')
     const seconds = String(secondsAmount).padStart(2, '0')
 
-    useEffect(() => {     
+    useEffect(() => {
         let intervalId
         if (activeCycle) {
             //WEB API -- setInterval
@@ -41,7 +43,8 @@ export function Timer({ activeCycle }) {
             }, 1000);
         }
         return () => {
-            clearInterval(intervalId)}
+            clearInterval(intervalId)
+        }
     }, [activeCycle, totalSeconds])
 
     return (
