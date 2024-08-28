@@ -34,7 +34,12 @@ export function CycleProvider({ children }) {
         }
         console.log(newCycle)
         //setCycles(newCycle)
-        setCycles((previous) => [...previous, newCycle])
+        // setCycles((previous) => [...previous, newCycle])
+        setCycles((previous) => {
+           let newCycleState =  [...previous, newCycle]
+           localStorage.setItem('@lab-timer365:cycles-1.0.0', JSON.stringify(newCycleState))
+           return newCycleState
+        })
         setActiveCycleId(id)
     }
 
