@@ -4,7 +4,7 @@ import './timer.css'
 import PropTypes from 'prop-types'
 import { useCycle } from '../../context/cycle'
 
-//export function Timer({ activeCycle }) {
+//export function Timer({ activeCycle }) { como receber o useCycle() --> não precisa mais receber a prop activeCycle
 export function Timer() {
 const {activeCycle} = useCycle()
 
