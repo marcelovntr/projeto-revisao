@@ -6,7 +6,7 @@ import { useCycle } from '../../context/cycle'
 
 //export function Timer({ activeCycle }) { como receber o useCycle() --> não precisa mais receber a prop activeCycle
 export function Timer() {
-const {activeCycle} = useCycle()
+    const { activeCycle, markCurrentCycleAsFinished } = useCycle()
 
     //activeCycle.startDate
     const [amountSecondsPassed, setAmountSecondsPassed] = useState(() => {
@@ -27,6 +27,11 @@ const {activeCycle} = useCycle()
     const minutes = String(minutesAmount).padStart(2, '0')
     const seconds = String(secondsAmount).padStart(2, '0')
 
+    function tocarAudio() {
+        const audio = new Audio('')
+        audio.play
+    }
+
     useEffect(() => {
         let intervalId
         if (activeCycle) {
@@ -35,6 +40,7 @@ const {activeCycle} = useCycle()
                 const secondsDifference = differenceInSeconds(new Date(), new Date(activeCycle.startDate))
 
                 if (secondsDifference >= totalSeconds) {
+                    markCurrentCycleAsFinished()
                     setAmountSecondsPassed(totalSeconds)
                     clearInterval(intervalId)
                 } else {
@@ -45,7 +51,11 @@ const {activeCycle} = useCycle()
         return () => {
             clearInterval(intervalId)
         }
-    }, [activeCycle, totalSeconds])
+    }, [activeCycle, totalSeconds, markCurrentCycleAsFinished])
+
+    useEffect(() => {
+        if (minutesAmount === 0 && secondsAmount === 0) { tocarAudio()}
+    }, [minutesAmount, secondsAmount])
 
     return (
         <div className='container--timer'>
