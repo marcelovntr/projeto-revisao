@@ -7,7 +7,6 @@ import { useCycle } from '../../context/cycle'
 //export function Timer({ activeCycle }) { como receber o useCycle() --> não precisa mais receber a prop activeCycle
 export function Timer() {
     const { activeCycle, markCurrentCycleAsFinished } = useCycle()
-
     //activeCycle.startDate
     const [amountSecondsPassed, setAmountSecondsPassed] = useState(() => {
         if (activeCycle) {
@@ -56,6 +55,11 @@ export function Timer() {
     // useEffect(() => {
     //     if (minutesAmount === 0 && secondsAmount === 0) { tocarAudio() }
     // }, [minutesAmount, secondsAmount])
+
+    useEffect(() => {
+        if(activeCycle) {
+            document.title = `${minutes} : ${seconds} - ${activeCycle.task}`}
+    }, [minutes, seconds, activeCycle])
 
     return (
         <div className='container--timer'>

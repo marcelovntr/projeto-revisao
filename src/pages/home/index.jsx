@@ -5,14 +5,20 @@ import { Timer } from "../../components/timer";
 import { useForm, FormProvider } from 'react-hook-form'
 import './home.css'
 import { useCycle } from "../../context/cycle";
+import { SquarePlay, CirclePause } from 'lucide-react'
 
 
 export function HomePage() {
     // const {register, handleSubmit} = useForm()
-    const methods = useForm()
+    const methods = useForm({
+        defaultValues: {
+            task: '',
+            minutesAmount: 0,
+        }
+    })
     //const { activeCycle, createNewCycle } = useCycle()
-    const { createNewCycle } = useCycle()
-    const { handleSubmit } = methods
+    const { createNewCycle, activeCycle, interruptedCurrentCycle } = useCycle()
+    const { handleSubmit, reset, watch } = methods
     // const [cycles, setCycles] = useState([])
     // const [activeCycleId, setActiveCycleId] = useState(null) //saber qual ciclo está ativo
 
@@ -41,9 +47,13 @@ export function HomePage() {
         // //setCycles(newCycle)
         // setCycles((previous)=>[...previous, newCycle])
         // setActiveCycleId(id)
+        reset()
     }
 
     // const activeCycle = cycles.find(cycle => cycle.id === activeCycleId)
+
+    const task = watch('task')
+    const isSubmittedDisabled = !task
     return (
         // era div apenas
         //<form className="container--home" onSubmit={handleSubmit(createNewCycle)}>
@@ -54,7 +64,12 @@ export function HomePage() {
             </FormProvider>
             {/* <Timer activeCycle={activeCycle} /> passamento de prop pro 'arquivo' Timer processar */}
             <Timer /> {/*activeCycle que tava dentro foi pro próprio arquivo do Timer! */}
-            <Button>Começar</Button>
+            {
+                activeCycle ? (<Button type='button' variant="secondary" onClick={interruptedCurrentCycle}>
+                    <CirclePause size={24} />Interromper</Button>)
+                    : (<Button type='submit' disabled={isSubmittedDisabled}> <SquarePlay />Começar</Button>)
+            }
+
             {/*ou: <Button variant= "secondary">Começar</Button>    */}
         </form>
     )

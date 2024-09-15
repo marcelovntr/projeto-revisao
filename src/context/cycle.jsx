@@ -6,7 +6,8 @@ export const CycleContext = createContext({
     activeCycleId: null,
     createNewCycle: () => { },
     activeCycle: undefined,
-    markCurrentCycleAsFinished: () => { }
+    markCurrentCycleAsFinished: () => { },
+    interruptedCurrentCycle: () => { },
 
 })
 const CYCLE_KEY_LOCAL_STORAGE = '@lab-timer365:cycles-1.0.0'
@@ -16,7 +17,7 @@ export function CycleProvider({ children }) {
     const [cycles, setCycles] = useState(() => {
         const cycleStorage = localStorage.getItem(CYCLE_KEY_LOCAL_STORAGE)
 
-        if(cycleStorage) {
+        if (cycleStorage) {
             return JSON.parse(cycleStorage)
         }
         return []
@@ -69,9 +70,32 @@ export function CycleProvider({ children }) {
         localStorage.setItem(CYCLE_KEY_LOCAL_STORAGE, JSON.stringify(newStateCycle))
         localStorage.removeItem(ACTIVE_CYCLE_KEY_LOCAL_STORAGE)
     }
+
+    function interruptedCurrentCycle() {
+        const newStateCycle = cycles.map(cycle => {
+            if (cycle.id === activeCycleId) {
+                return {
+                    ...cycle, interruptedDate: new Date()
+                }
+            }
+            document.title = '' //eu que coloquei essa cousa, feio!
+            return cycle
+            
+        })
+        /*atualizando estados */
+        setCycles(newStateCycle) //<-- não necessita previous pq contem o array completo de cycles
+        setActiveCycleId(null)
+        /*atualizando localStorage */
+        localStorage.setItem(CYCLE_KEY_LOCAL_STORAGE, JSON.stringify(newStateCycle))
+        localStorage.removeItem(ACTIVE_CYCLE_KEY_LOCAL_STORAGE)
+    }
     const activeCycle = cycles.find(cycle => cycle.id === activeCycleId)
 
-    return <CycleContext.Provider value={{ cycles, activeCycleId, createNewCycle, activeCycle, markCurrentCycleAsFinished }}>
+    return <CycleContext.Provider
+        value={{
+            cycles, activeCycleId, createNewCycle, activeCycle,
+            markCurrentCycleAsFinished, interruptedCurrentCycle
+        }}>
         {children}
     </CycleContext.Provider>
 }
