@@ -27,10 +27,10 @@ export function Timer() {
     const minutes = String(minutesAmount).padStart(2, '0')
     const seconds = String(secondsAmount).padStart(2, '0')
 
-    function tocarAudio() {
-        const audio = new Audio('')
-        audio.play
-    }
+    // function tocarAudio() {
+    //     const audio = new Audio('')
+    //     audio.play
+    // }
 
     useEffect(() => {
         let intervalId
@@ -53,9 +53,9 @@ export function Timer() {
         }
     }, [activeCycle, totalSeconds, markCurrentCycleAsFinished])
 
-    useEffect(() => {
-        if (minutesAmount === 0 && secondsAmount === 0) { tocarAudio()}
-    }, [minutesAmount, secondsAmount])
+    // useEffect(() => {
+    //     if (minutesAmount === 0 && secondsAmount === 0) { tocarAudio() }
+    // }, [minutesAmount, secondsAmount])
 
     return (
         <div className='container--timer'>

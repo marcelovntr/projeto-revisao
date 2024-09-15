@@ -6,7 +6,7 @@ export const CycleContext = createContext({
     activeCycleId: null,
     createNewCycle: () => { },
     activeCycle: undefined,
-    markCurrentCycleAsFinished: ()=>{}
+    markCurrentCycleAsFinished: () => { }
 
 })
 const CYCLE_KEY_LOCAL_STORAGE = '@lab-timer365:cycles-1.0.0'
@@ -15,7 +15,10 @@ const ACTIVE_CYCLE_KEY_LOCAL_STORAGE = '@lab-timer365:active-cycles-1.0.0'
 export function CycleProvider({ children }) {
     const [cycles, setCycles] = useState(() => {
         const cycleStorage = localStorage.getItem(CYCLE_KEY_LOCAL_STORAGE)
-        if (cycleStorage) { return JSON.parse(cycleStorage) }
+
+        if(cycleStorage) {
+            return JSON.parse(cycleStorage)
+        }
         return []
     })
     const [activeCycleId, setActiveCycleId] = useState(() => {
@@ -60,10 +63,10 @@ export function CycleProvider({ children }) {
             return cycle
         })
         /*atualizando estados */
-        setCycles(newStateCycle)
+        setCycles(newStateCycle) //<-- não necessita previous pq contem o array completo de cycles
         setActiveCycleId(null)
         /*atualizando localStorage */
-        localStorage.setItem(CYCLE_KEY_LOCAL_STORAGE, newStateCycle) //localStorage.setItem(newStateCycle)
+        localStorage.setItem(CYCLE_KEY_LOCAL_STORAGE, JSON.stringify(newStateCycle))
         localStorage.removeItem(ACTIVE_CYCLE_KEY_LOCAL_STORAGE)
     }
     const activeCycle = cycles.find(cycle => cycle.id === activeCycleId)
